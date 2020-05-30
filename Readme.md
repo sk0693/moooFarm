@@ -28,17 +28,6 @@ npm install
 npm start
 ```
 
-## Featuring
-
-- Authorization
-- User Authentication
-- File Uploading
-- File Storage
-- Compressing
-- Uncompressing
-- Tiny Url
-- File Serve
-
 ## Authorization
 
 All API requests require the use of a generated Authorization Token `(JWT)`. You have to register and then login the application using `register` and `login` routes respectively. These APIs is not required the jwt token.
@@ -113,116 +102,6 @@ POST /v1/auth/login
 }
 ```
 
-### file/upload
-
-```http
-POST /v1/file/upload
-```
-
-| Parameter | Type     | Description            |
-| :-------- | :------- | :--------------------- |
-| `file`    | `FILE`   | **Required**. Any file |
-| `title`   | `String` | **Optional**.          |
-| `title`   | `String` | **Optional**.          |
-
-While uploading, there is a compression algo applied on some kind of file. I have applied this algo on only files which has file `.txt` file extension else remains the same.
-
-#### Response
-
-```javascript
-{
-    "result": "File uploaded succesfully with named `[file name]`"
-}
-```
-
-### file
-
-```http
-GET /v1/file
-```
-
-To get the all files which is uploaded by the user
-
-<!-- | Parameter  | Type     | Description                           |
-| :--------- | :------- | :------------------------------------ |
-| `email`    | `string` | **Required**. The valid email address |
-| `password` | `string` | **Required**. 8 digit password        | -->
-
-#### Response
-
-```javascript
-{
-    "result": [
-        {
-            "isDeleted": Boolean,
-            "isCompressed": Boolean,
-            "_id": String,
-            "userId": String,
-            "title": String,
-            "description": String,
-            "fileUrl": String,
-            "meta": {
-                "filepath": String,
-                "filename": String,
-                "size": Number,
-                "originalname": String,
-                "mimeType": String
-            },
-            "createdAt": Date,
-            "updatedAt": Date,
-        }
-        ...
-    ]
-}
-```
-
-### file/:[fileId]
-
-```http
-GET /v1/file/5eb97457f2130e4060365dd4
-```
-
-To get the single file using `[fileId]` params which is uploaded by the user
-
-<!-- | Parameter  | Type     | Description                           |
-| :--------- | :------- | :------------------------------------ |
-| `email`    | `string` | **Required**. The valid email address |
-| `password` | `string` | **Required**. 8 digit password        | -->
-
-#### Response
-
-```javascript
-{
-    "result":
-        {
-            "isDeleted": Boolean,
-            "isCompressed": Boolean,
-            "_id": String,
-            "userId": String,
-            "title": String,
-            "description": String,
-            "fileUrl": String,
-            "meta": {
-                "filepath": String,
-                "filename": String,
-                "size": Number,
-                "originalname": String,
-                "mimeType": String
-            },
-            "createdAt": Date,
-            "updatedAt": Date,
-        }
-}
-```
-
-### file/:[fileId]
-
-```http
-DELETE /v1/file/5eb97457f2130e4060365dd4
-```
-
-Delete the selected file using `[fileId]` params
-
 ### user/
 
 ```http
@@ -242,31 +121,3 @@ Getting the user details.
     }
 }
 ```
-
-### user/share/:[fileId]
-
-```http
-GET /v1/user/shareFile/5eb97457f2130e4060365dd4
-```
-
-When user wants to share the file to publically, then in response the server will give the `tiny url`
-
-#### Response
-
-```javascript
-{
-    "result": String [`the tiny url in return`]
-}
-```
-
-### tiny/:[tinyUrl]
-
-```http
-GET /v1/tiny/nkqYrhi
-```
-
-When user wants to share the file to publically, then in response the server will give the `tiny url`
-
-#### Response
-
-The file will be served on the browser. And if the uploaded file has `.txt` extension then it will be uncompressed before served.
