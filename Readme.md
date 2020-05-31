@@ -7,7 +7,7 @@ This project is build for handling the files operation and storage. The apis is 
 1. Clone the repository using :
 
 ```bash
-git clone https://github.com/sk0693/crud-operation-on-file.git
+git clone https://github.com/sk0693/moooFarm.git
 ```
 
 2. Change the repository directory :
