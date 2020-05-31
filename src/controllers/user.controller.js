@@ -64,6 +64,7 @@ const availService = async (req, res) => {
     const newWalletbalance = await walletService.updateWallet(user.id, newBalance);
 
     const response = {
+      result: "Congratulations the service has been activated !!",
       old_wallet: {
         total: userWallet.transformToSum(),
         wallet: userWallet.transform()
@@ -118,7 +119,7 @@ const deductionFromWinnings = (servicePrice, winnings) => {
   }
 
   if (winnings >= servicePrice) {
-    return Math.min(servicePrice, deposits);
+    return Math.min(servicePrice, winnings);
   }
 
   throw {
